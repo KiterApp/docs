@@ -55,9 +55,13 @@
       "pages": [
         "get-started/introduction",
         "get-started/quickstart",
-        "get-started/api-overview",
-        "get-started/new-page",
-        "get-started/page"
+        "get-started/api-overview"
+      ]
+    },
+    {
+      "group": "API Introduction",
+      "pages": [
+        "get-started/api-overview"
       ]
     },
     {
