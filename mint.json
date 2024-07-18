@@ -7,36 +7,25 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#3b82f6", 
+    "light": "#60a5fa",   
+    "dark": "#2563eb",    
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#3b82f6",  
+      "to": "#60a5fa"     
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:help@promptloop.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://promptloop.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
     {
       "name": "API Reference",
       "openapi": "/swagger.json",
@@ -44,14 +33,9 @@
       "icon": "square-terminal"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
+      "name": "Platform Guides",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://promptloop.com/account/docs"
     }
   ],
   "navigation": [
@@ -64,7 +48,7 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Essentials (SETUP GUIDE)",
       "pages": [
         "essentials/markdown",
         "essentials/code",
@@ -72,12 +56,6 @@
         "essentials/settings",
         "essentials/navigation",
         "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
       ]
     },
     {
@@ -90,8 +68,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
+    "x": "https://x.com/promptloop",
+    "github": "https://github.com/promptloop",
     "linkedin": "https://www.linkedin.com/company/mintsearch"
   }
 }
