@@ -18,14 +18,25 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:help@promptloop.com"
+      "url": "mailto:help@mintlify.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
     "url": "https://promptloop.com"
   },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
   "anchors": [
+    {
+      "name": "Documentation",
+      "icon": "book-open-cover",
+      "url": "https://promptloop.com/docs"
+    },
     {
       "name": "API Reference",
       "openapi": "/swagger.json",
@@ -33,7 +44,12 @@
       "icon": "square-terminal"
     },
     {
-      "name": "Platform Guides",
+      "name": "Documentation",
+      "icon": "book-open-cover",
+      "url": "essentials"
+    },
+    {
+      "name": "Platform Guides (Promptloop.com)",
       "icon": "newspaper",
       "url": "https://promptloop.com/account/docs"
     }
@@ -48,7 +64,7 @@
       ]
     },
     {
-      "group": "Essentials (SETUP GUIDE)",
+      "group": "Essentials",
       "pages": [
         "essentials/markdown",
         "essentials/code",
@@ -59,11 +75,9 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "API Documentation",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "v0"
       ]
     }
   ],
