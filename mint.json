@@ -5,7 +5,7 @@
     "dark": "/logo/light.jpeg",
     "light": "/logo/light.jpeg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://www.promptloop.com/favicon.ico",
   "colors": {
     "primary": "#3b82f6", 
     "light": "#60a5fa",   
