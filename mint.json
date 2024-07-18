@@ -54,8 +54,7 @@
       "group": "Get Started",
       "pages": [
         "get-started/introduction",
-        "get-started/quickstart",
-        "get-started/api-overview"
+        "get-started/quickstart"
       ]
     },
     {
