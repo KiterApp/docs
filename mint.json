@@ -41,7 +41,7 @@
     {
       "name": "Docs Setup guide",
       "icon": "book-open-cover",
-      "url": "get_started"
+      "url": "get-started"
     },
     {
       "name": "Platform Guides (Promptloop.com)",
@@ -53,9 +53,9 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "api_overview"
+        "get-started/introduction",
+        "get-started/quickstart",
+        "get-started/api_overview"
       ]
     },
     {
