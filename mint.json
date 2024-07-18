@@ -56,7 +56,8 @@
         "get-started/introduction",
         "get-started/quickstart",
         "get-started/api-overview",
-        "get-started/new-page"
+        "get-started/new-page",
+        "get-started/page"
       ]
     },
     {
