@@ -14,7 +14,7 @@ PromptLoop AI's Batch API v0 allows you to process large datasets, such as CSVs 
 
 Send a JSONL file containing your input data:
 
-```
+``` Kick off a job
 POST /launch-job
 json input.jsonl
 {"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
@@ -26,7 +26,7 @@ json input.jsonl
 
 Check the status of your job:
 
-```
+``` Check on the Job
 GET /job-status/:id
 ```
 
