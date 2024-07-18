@@ -65,7 +65,7 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Note for docs dev",
       "pages": [
         "essentials/markdown",
         "essentials/code",
