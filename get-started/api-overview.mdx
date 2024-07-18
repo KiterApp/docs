@@ -8,46 +8,84 @@ icon: 'server'
 
 PromptLoop AI's Batch API v0 allows you to process large datasets, such as CSVs of websites to scrape, using AI tasks. This guide will help you get started with sending inputs, monitoring jobs, and retrieving results.
 
-## Basic Usage
+## API Authentication
 
-### Sending Inputs
+Before using the Batch API, ensure you have an API key. You can obtain this from your PromptLoop dashboard.
 
-Send a JSONL file containing your input data:
 
-``` markup Kick off a job
-POST /launch-job
-json input.jsonl
+### Setting Up Authentication
+
+Include your API key in the `Authorization` header of all requests:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+## Data Format
+
+The Batch API expects input data in JSONL (JSON Lines) format. Each line represents a single input object.
+
+## Input Structure
+Each input object should have:
+`data_uuid:` A unique identifier for the input
+`autoloop_input_array:` An array containing the input data
+
+Example:
+```json
 {"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
 {"data_uuid": "2", "autoloop_input_array": ["https://another-example.com"]}
 ```
 
+## API Workflow
 
-### Monitoring Jobs
+Follow these steps to use the Batch API effectively:
 
-Check the status of your job:
+<Steps>
+  <Step title="Launch a Job">
+    Send your JSONL data to the `/v0/launch-job` endpoint to start processing. 
+    Ensure your data is properly formatted and includes the required fields.
 
-``` markup Check on the Job
-GET /job-status/:id
-```
+    ```http
+    POST /v0/launch-job
+    Content-Type: application/json
 
-### Retrieving Results
+    {"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
+    {"data_uuid": "2", "autoloop_input_array": ["https://another-example.com"]}
+    ```
 
-Fetch the results of a completed job:
+    You'll receive a job ID in response, which you'll use in the next steps.
+  </Step>
 
-``` markup
-GET /retrieve-job/:id
-```
+  <Step title="Monitor Job Status">
+    Check the progress of your job using the `/v0/job-status/{id}` endpoint. 
+    Replace `{id}` with the job ID you received in step 1.
 
-## Key Endpoints
+    ```http
+    GET /v0/job-status/{id}
+    ```
 
-```typescript
-@Post('launch-job')
-uploadAutoloopData(@UploadedFile() file: Multer.File, @Body() body: {...})
-@Get('job-status/:id')
-getJobById(): string
-@Get('retrieve-job/:id')
-retrieveJobById(): string
-```
+    The response will include the current status of your job (e.g., "in_progress", "completed", "failed").
+  </Step>
 
+  <Step title="Retrieve Results">
+    Once the job status is "completed", fetch the processed data using the `/v0/retrieve-job/{id}` endpoint.
 
-For detailed API documentation, refer to the [API reference](/api-reference/)
+    ```http
+    GET /v0/retrieve-job/{id}
+    ```
+
+    The response will contain the results of your batch processing job.
+  </Step>
+</Steps>
+
+Remember to handle errors and implement retries as necessary throughout this process.
+
+## Error Handling
+The API uses standard HTTP status codes. Common errors:
+- 400: Bad Request (e.g., invalid input format)
+- 401: Unauthorized (invalid API key)
+- 429: Too Many Requests (rate limit exceeded)
+
+Always check the response body for detailed error messages.
+
+## Next Steps
+With this overview, you're ready to explore the specific endpoints. Refer to the [API reference](v0) for detailed information on each endpoint's parameters and responses.
