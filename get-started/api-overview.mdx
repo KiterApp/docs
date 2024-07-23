@@ -18,10 +18,13 @@ On your PromptLoop dashboard, navigate to the [API settings page](https://prompt
 
 ### Setting Up Authentication
 
-Include your API key in the `Authorization` header of all requests:
+Include your API key in the `x-api-key` header of all requests. Here's an example using cURL:
 
 ```
-Authorization: Bearer YOUR_API_KEY
+curl --request GET \
+--url https://api.promptloop.com/v0/batches/{id}/results \
+--header 'x-api-key: YOUR_API_KEY'
+
 ```
 ## Data Format
 
@@ -48,7 +51,7 @@ Follow these steps to use the Batch API effectively:
     Ensure your data is properly formatted and includes the required fields.
 
     ```http
-    POST /v0/launch-job
+    POST /v0/batches
     Content-Type: application/json
 
     {"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
@@ -63,17 +66,17 @@ Follow these steps to use the Batch API effectively:
     Replace `{id}` with the job ID you received in step 1.
 
     ```http
-    GET /v0/job-status/{id}
+    GET /v0/batches/{id}
     ```
 
     The response will include the current status of your job (e.g., "in_progress", "completed", "failed").
   </Step>
 
   <Step title="Retrieve Results">
-    Once the job status is "completed", fetch the processed data using the `/v0/retrieve-job/{id}` endpoint.
+    Once the job status is "completed", fetch the processed data using the `/v0/batch/{id}/results` endpoint.
 
     ```http
-    GET /v0/retrieve-job/{id}
+    GET /v0/batch/{id}/results
     ```
 
     The response will contain the results of your batch processing job.
