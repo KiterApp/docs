@@ -33,12 +33,12 @@ The Batch API expects input data in JSONL (JSON Lines) format. Each line represe
 ## Input Structure
 Each input object should have:
 `data_uuid:` A unique identifier for the input
-`autoloop_input_array:` An array containing the input data
+`inputs:` An array containing the input data
 
 Example:
 ```json
-{"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
-{"data_uuid": "2", "autoloop_input_array": ["https://another-example.com"]}
+{"data_uuid": "1", "inputs": ["https://example.com"]}
+{"data_uuid": "2", "inputs": ["https://another-example.com"]}
 ```
 
 ## API Workflow
@@ -54,8 +54,8 @@ Follow these steps to use the Batch API effectively:
     POST /v0/batches
     Content-Type: application/json
 
-    {"data_uuid": "1", "autoloop_input_array": ["https://example.com"]}
-    {"data_uuid": "2", "autoloop_input_array": ["https://another-example.com"]}
+    {"data_uuid": "1", "inputs": ["https://example.com"]}
+    {"data_uuid": "2", "inputs": ["https://another-example.com"]}
     ```
 
     You'll receive a job ID in response, which you'll use in the next steps.
@@ -92,6 +92,10 @@ The API uses standard HTTP status codes. Common errors:
 - 429: Too Many Requests (rate limit exceeded)
 
 Always check the response body for detailed error messages.
+
+## Batch Size Limits
+
+Batches are limited to 100mb in size per JSONL upload. Your account will also be limited to existing usage limits which can be viewed on your [dashbaord](https://www.promptloop.com/account/settings/usage)
 
 ## Next Steps
 With this overview, you're ready to explore the specific endpoints. Refer to the [API reference](/v0) for detailed information on each endpoint's parameters and responses.
