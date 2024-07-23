@@ -131,5 +131,16 @@ When the batch job completes, PromptLoop will send a POST request to your specif
 }
 ```
 
+The `data` field contains a JSONL string with the processed results for each input.
+
+### Handling Webhook Requests
+
+Ensure your webhook endpoint can:
+1. Receive POST requests
+2. Process the JSON payload
+3. Respond with a 2xx status code to acknowledge receipt
+
+Implement proper security measures, such as verifying the webhook source and using HTTPS.
+
 ## Next Steps
 With this overview, you're ready to explore the specific endpoints. Refer to the [API reference](/v0) for detailed information on each endpoint's parameters and responses.
