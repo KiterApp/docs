@@ -97,5 +97,39 @@ Always check the response body for detailed error messages.
 
 Batches are limited to 100mb in size per JSONL upload. Your account will also be limited to existing usage limits which can be viewed on your [dashboard](https://www.promptloop.com/account/settings/usage)
 
+## Webhooks
+
+PromptLoop's Batch API supports webhooks, allowing you to receive real-time updates about your batch processing jobs.
+
+### Setting Up a Webhook
+
+When creating a new batch job, you can specify a webhook URL to receive notifications:
+```
+POST /v0/batches
+Content-Type: application/json
+{
+"webhook_url": "https://your-webhook-endpoint.com",
+"data": [
+{"data_uuid": "1", "inputs": ["https://example.com"]},
+{"data_uuid": "2", "inputs": ["https://another-example.com"]}
+]
+}
+```
+
+
+
+### Webhook Payload
+
+When the batch job completes, PromptLoop will send a POST request to your specified webhook URL with the following payload:
+
+```
+{
+"status": "completed",
+"message": "Your data processing is complete",
+"data": "...", // JSONL string containing processed data
+"timestamp": "2024-07-23T03:57:20.643Z"
+}
+```
+
 ## Next Steps
 With this overview, you're ready to explore the specific endpoints. Refer to the [API reference](/v0) for detailed information on each endpoint's parameters and responses.
