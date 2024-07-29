@@ -33,13 +33,62 @@ The Batch API expects input data in JSONL (JSON Lines) format. Each line represe
 ## Input Structure
 Each input object should have:
 `data_uuid:` A unique identifier for the input
-`inputs:` An array containing the input data
+`inputs:` An array containing the input data. Tasks specify whether the input should be a link or a string. This will be checked in the validation step.
 
 Example:
 ```json
 {"data_uuid": "1", "inputs": ["https://example.com"]}
 {"data_uuid": "2", "inputs": ["https://another-example.com"]}
 ```
+
+### Validating Input Data
+Ensure your input data is properly formatted and includes all required fields. Invalid data will result in a `400 Bad Request` error.
+You can use the `v0/batches/validate-data` endpoint to validate your input data before submitting a job.
+
+The response will indicate whether the data is valid or not.
+
+<Accordion
+	title="Examples of Validation Errors"
+>
+	**Too many inputs:**
+
+	```json
+	{
+			"status": "success",
+			"data": {
+					"job_count": 4,
+					"job_improper_format_count": 1,
+					"job_improper_format": [
+							{
+									"error_index": 4,
+									"error_message": "JSONL object inputs length does not match task inputs length: 1 vs 2. Expecting inputs schema: [{\"name\":\"websiteUrl\",\"schema\":\"LinkItemSchema\",\"description\":\"Website URL\"}]"
+							}
+					]
+			},
+			"message": "",
+			"error": null
+	}
+	```
+
+	**Incorrect Input Type:**
+	```json
+	{
+			"status": "success",
+			"data": {
+					"job_count": 4,
+					"job_improper_format_count": 1,
+					"job_improper_format": [
+							{
+									"error_index": 4,
+									"error_message": "JSONL object inputs do not match task inputs: Expected a valid URL for input: websiteUrl, received: Not a Link"
+							}
+					]
+			},
+			"message": "",
+			"error": null
+	}
+	```
+</Accordion>
 
 ## API Workflow
 
@@ -79,7 +128,9 @@ Follow these steps to use the Batch API effectively:
     GET /v0/batch/{id}/results
     ```
 
-    The response will contain the results of your batch processing job.
+    The response will contain the results of your batch processing job. 
+		The results will be returned in json format, with results presented in key-value pairs within the object. One object for each input row.
+		Each object will also include the `data_uuid` passed in with that row. Order is not guaranteed to be maintained when processing, so use this to identify rows.
   </Step>
 </Steps>
 
@@ -96,6 +147,7 @@ Always check the response body for detailed error messages.
 ## Batch Size Limits
 
 Batches are limited to 100mb in size per JSONL upload. Your account will also be limited to existing usage limits which can be viewed on your [dashboard](https://www.promptloop.com/account/settings/usage)
+For larger batches, we recommend retrieving the results using `output_type=stream` for the `/v0/batch/{id}/results` endpoint. This allows for more efficient transfers.
 
 ## Webhooks
 
@@ -117,7 +169,6 @@ Content-Type: application/json
 ```
 
 
-
 ### Webhook Payload
 
 When the batch job completes, PromptLoop will send a POST request to your specified webhook URL with the following payload:
@@ -126,12 +177,14 @@ When the batch job completes, PromptLoop will send a POST request to your specif
 {
 "status": "completed",
 "message": "Your data processing is complete",
-"data": "...", // JSONL string containing processed data
+"data": "...", // JSON Array of the processed results
 "timestamp": "2024-07-23T03:57:20.643Z"
+"batch_id": "12345"
 }
 ```
 
-The `data` field contains a JSONL string with the processed results for each input.
+The `data` field contains a JSON array with the processed results for each input, similar to the response from the `/v0/batch/{id}/results` endpoint.
+The Payload will be sent with a `Content-Type: application/json` header.
 
 ### Handling Webhook Requests
 
