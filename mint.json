@@ -34,7 +34,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "https://api.promptloop.com/api/v0",
+      "openapi": "/swagger.json",
       "url": "v0",
       "icon": "square-terminal"
     },
