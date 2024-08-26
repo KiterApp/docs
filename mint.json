@@ -34,7 +34,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "https://api.promptloop.com/api/v0",
+      "openapi": "https://api.promptloop.com/v0/openapi.json",
       "url": "v0",
       "icon": "square-terminal"
     },
