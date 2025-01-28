@@ -28,14 +28,14 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "/swagger-files/v0/swagger.json",
+      "openapi": "https://api.promptloop.com/v0/openapi.json",
       "url": "v0",
 			"version": "v0",
       "icon": "square-terminal"
     },
 		{
       "name": "API Reference",
-      "openapi": "/swagger-files/v0_1/swagger.json",
+      "openapi": "https://api.promptloop.com/v0.1/openapi.json",
       "url": "v0.1",
 			"version": "v0.1",
       "icon": "square-terminal"

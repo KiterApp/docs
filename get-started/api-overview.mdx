@@ -1,5 +1,5 @@
 ---
-title: 'Batch API Overview'
+title: 'API Overview'
 description: 'Run AI tasks on large datasets with PromptLoop'
 icon: 'server'
 ---
@@ -133,6 +133,62 @@ Follow these steps to use the Batch API effectively:
 		Each object will also include the `data_uuid` passed in with that row. Order is not guaranteed to be maintained when processing, so use this to identify rows.
   </Step>
 </Steps>
+
+## API Rate Limits
+
+To ensure fair usage and maintain the performance of our services, we enforce rate limits on our APIs. The rate limits are defined based on the API endpoints and user plans.
+
+### Default Rate Limits
+
+Each API has a specific rate limit, measured in Transactions Per Minute (TPM). The following table summarizes the default rate limits:
+
+#### Tasks
+
+| API Method | Endpoint         | TPM Restriction |
+| ---------- | ---------------- | --------------- |
+| `GET`      | `/v0/tasks`      | 20 TPM          |
+| `GET`      | `/v0/tasks/{id}` | 10 TPM          |
+| `POST`     | `/v0/tasks/{id}` | 5 TPM           |
+
+#### Batches
+
+| API Method | Endpoint                    | TPM Restriction |
+| ---------- | --------------------------- | --------------- |
+| `GET`      | `/v0/batches`               | 10 TPM          |
+| `POST`     | `/v0/batches`               | 4 TPM           |
+| `POST`     | `/v0/batches/validate-data` | 20 TPM          |
+| `GET`      | `/v0/batches/{id}`          | 20 TPM          |
+| `PUT`      | `/v0/batches/{id}`          | 4 TPM           |
+| `GET`      | `/v0/batches/{id}/results`  | 10 TPM          |
+
+### Custom
+
+For custom use-cases requiring higher TPM allocations, please reach out to support. Rate limit increases will be granted on a case-by-case basis for users on Company plans.
+
+### Handling Rate Limit Errors
+
+If you exceed the rate limit, the API will return a `429 Too Many Requests` response. It's important to implement proper error handling in your application to manage these scenarios effectively.
+
+### Example Rate Limit Error Handling
+
+Here’s an example of how to handle rate limit errors in your application:
+
+```javascript
+// Example: Handling rate limit errors in a JavaScript application
+fetch("https://api.yourdomain.com/[ENDPOINT]")
+  .then((response) => {
+    if (response.status === 429) {
+      console.error(
+        "Rate limit exceeded. Please wait before making more requests."
+      );
+      // Optionally, implement a retry mechanism here
+    } else {
+      return response.json();
+    }
+  })
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
+```
 
 Remember to handle errors and implement retries as necessary throughout this process.
 
