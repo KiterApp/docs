@@ -25,17 +25,19 @@
     "name": "Dashboard",
     "url": "https://promptloop.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "v0"
-    }
-  ],
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "/swagger.json",
+      "openapi": "/swagger-files/v0/swagger.json",
       "url": "v0",
+			"version": "v0",
+      "icon": "square-terminal"
+    },
+		{
+      "name": "API Reference",
+      "openapi": "/swagger-files/v0_1/swagger.json",
+      "url": "v0.1",
+			"version": "v0.1",
       "icon": "square-terminal"
     },
     {
@@ -62,15 +64,18 @@
       "pages": [
         "get-started/api-overview"
       ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "v0"
-      ]
     }
   ],
+	"versions": [
+		{
+			"name": "v0.1",
+			"default": true
+		},
+		{
+			"name": "v0"
+		}
+	],
   "footerSocials": {
-    "webiste": "https://promptloop.com"
+    "website": "https://promptloop.com"
   }
 }
